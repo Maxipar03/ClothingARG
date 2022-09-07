@@ -7,7 +7,7 @@ const Controller = {
         res.render('index')
 
     }
-
+    
 
     }
 
