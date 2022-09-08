@@ -1,8 +1,6 @@
 const APIcontroller = {
 
-    list: (req,res) => {
-        return res.json("hola")
-    }
+    //Aca va la logica//
     
     }
     

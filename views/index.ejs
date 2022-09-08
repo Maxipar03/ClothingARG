@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+  <%- include("./partials/head") %>
+  <%- include("./partials/header") %>
   <body>
-    <h1>Hello World</h1>
+    <% products.forEach(product => {%> 
+    <article class="card-product">
+      <h3><%=product.name%> </h3>
+      <% }) %>
+    </article>
   </body>
 </html>
+

@@ -25,7 +25,7 @@ module.exports = function (sequelize, DataTypes) {
     }
     let config ={
         tableName: "products",
-        timestamps: "false"
+        timestamps: false,
     }
 
     let Product = sequelize.define(alias, cols, config)
@@ -33,17 +33,17 @@ module.exports = function (sequelize, DataTypes) {
     Product.associate = function(models){
         Product.belongsTo(models.Material,{
             as: "materials",
-            ForeignKey: "material_id"
+            foreignKey: "material_id"
         })
     
         Product.belongsTo(models.Brand,{
             as: "brands",
-            ForeignKey: "brand_id"
+            foreignKey: "brand_id"
         }) 
     
         Product.belongsTo(models.Color,{
             as: "colors",
-            ForeignKey: "color_id"
+            foreignKey: "color_id"
         })
     
     }
