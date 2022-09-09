@@ -48,5 +48,16 @@ a {
   width: 33vh;
 }
 
+.card-title{
+  font-size: 30px;
+}
+
+.card-price{
+  color: #00B7FF;
+}
+
+.container{
+  padding-top: 10px;
+}
 
 

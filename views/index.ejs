@@ -3,11 +3,25 @@
   <%- include("./partials/head") %>
   <%- include("./partials/header") %>
   <body>
-    <% products.forEach(product => {%> 
-    <article class="card-product">
-      <h3><%=product.name%> </h3>
-      <% }) %>
-    </article>
+    <% products.forEach(product => {%>
+      <% images.forEach(image => {%>  
+    <div class="container">
+      <div class="row">
+        <div class="row-cols-3">
+          <div class="card">
+            <article class="card-product">
+              <img class="card-img-top" src="<%= image.url %> ">
+              <h1 class="card-title"><%=product.name%></h1>
+              <h3 class="card-price"><%=product.price%> USD</h3>
+              <h6 class="card-brand"><%=product.brands.name%></h6>             
+    <% }) %>
+    <% }) %>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
 
