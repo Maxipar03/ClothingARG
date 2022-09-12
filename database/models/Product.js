@@ -16,6 +16,9 @@ module.exports = function (sequelize, DataTypes) {
         material_id: {
             type: DataTypes.INTEGER
         },
+        color_id: {
+            type: DataTypes.INTEGER
+        },
         price: {
             type: DataTypes.INTEGER
         },

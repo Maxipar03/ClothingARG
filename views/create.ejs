@@ -1,0 +1,64 @@
+<%- include("./partials/head") %>
+
+<%- include("./partials/header") %>
+<h1>Publica tu zapatilla</h1>
+<form action="/create" method="POST">
+    <div>
+        <label for="">Name</label>
+        <input type="text" name="name" value="<%= locals.oldData ? oldData.name : null %>">
+        <% if (locals.errors && errors.name) {%> 
+            <div class="text-danger">
+              <%= errors.name.msg %> 
+            </div>
+            <% } %> 
+    </div>
+    <div>
+        <label for="">Brand</label>
+        <select name="brand">
+            <% for (let i = 0; i < brand.length; i++){%>
+            <option value="<%= brand[i].id %> ">      
+                <%= brand[i].name %> 
+            </option>
+            <% } %>
+        </select>
+    </div>
+    <div>
+        <label for="">Material</label>
+        <select name="material">
+        <% for (let i = 0; i < material.length; i++){%>
+            <option value="<%= material[i].id %> ">      
+                <%= material[i].name %> 
+            </option>
+            <% } %>
+        </select>
+    </div>
+    <div>
+        <label for="">Color</label>
+        <select name="color">
+            <% for (let i = 0; i < color.length; i++){%>
+            <option value="<%= color[i].id %>">      
+                <%= color[i].name %> 
+            </option>
+            <% } %>
+        </select>
+    </div>
+    <div>
+        <label for="">Price</label>
+        <input type="text" name="price" value="<%= locals.oldData ? oldData.price : null %>">
+        <% if (locals.errors && errors.price) {%> 
+        <div class="text-danger">
+          <%= errors.price.msg %> 
+        </div>
+        <% } %> 
+    </div>
+    <div>
+        <label for="">Description</label>
+        <input type="text" name="description" value="<%= locals.oldData ? oldData.description : null %>">
+        <% if (locals.errors && errors.description) {%> 
+            <div class="text-danger">
+              <%= errors.description.msg %> 
+            </div>
+            <% } %> 
+    </div>
+    <button type="submit">Create</button>
+</form>
