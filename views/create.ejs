@@ -1,20 +1,32 @@
 <%- include("./partials/head") %>
 
 <%- include("./partials/header") %>
+
+<div class="container">
+
 <h1>Publica tu zapatilla</h1>
-<form action="/create" method="POST">
-    <div>
-        <label for="">Name</label>
-        <input type="text" name="name" value="<%= locals.oldData ? oldData.name : null %>">
+<form action="/create" method="POST" class="row">
+    <div class="col-6">
+        <label for="imageInput" class="form-label mt-2">Image</label>
+        <input type="text" name="image" class="form-control" value="<%= locals.oldData ? oldData.image : null %>">
+        <% if (locals.errors && errors.image) {%>
+            <div class="text-danger">
+                <%= errors.image.msg %>
+            </div>
+        <% } %>
+    </div>
+    <div class="col-6">
+        <label for="nameInput" class="form-label mt-2">Name</label>
+        <input type="text" name="name" class="form-control" value="<%= locals.oldData ? oldData.name : null %>">
         <% if (locals.errors && errors.name) {%> 
             <div class="text-danger">
               <%= errors.name.msg %> 
             </div>
             <% } %> 
     </div>
-    <div>
-        <label for="">Brand</label>
-        <select name="brand">
+    <div class="col-6">
+        <label for="brandInput" class="form-label mt-2">Brand</label>
+        <select name="brand" class="form-select">
             <% for (let i = 0; i < brand.length; i++){%>
             <option value="<%= brand[i].id %> ">      
                 <%= brand[i].name %> 
@@ -22,9 +34,9 @@
             <% } %>
         </select>
     </div>
-    <div>
-        <label for="">Material</label>
-        <select name="material">
+    <div class="col-6">
+        <label for="materialInput" class="form-label mt-2">Material</label>
+        <select name="material" class="form-select">
         <% for (let i = 0; i < material.length; i++){%>
             <option value="<%= material[i].id %> ">      
                 <%= material[i].name %> 
@@ -32,9 +44,9 @@
             <% } %>
         </select>
     </div>
-    <div>
-        <label for="">Color</label>
-        <select name="color">
+    <div class="col-6">
+        <label for="colorInput" class="form-label mt-2">Color</label>
+        <select name="color" class="form-select">
             <% for (let i = 0; i < color.length; i++){%>
             <option value="<%= color[i].id %>">      
                 <%= color[i].name %> 
@@ -42,9 +54,9 @@
             <% } %>
         </select>
     </div>
-    <div>
-        <label for="">Price</label>
-        <input type="text" name="price" value="<%= locals.oldData ? oldData.price : null %>">
+    <div class="col-1">
+        <label for="priceInput" class="form-label mt-2">Price</label>
+        <input type="text" name="price"  class="form-control" value="<%= locals.oldData ? oldData.price : null %>">
         <% if (locals.errors && errors.price) {%> 
         <div class="text-danger">
           <%= errors.price.msg %> 
@@ -52,13 +64,17 @@
         <% } %> 
     </div>
     <div>
-        <label for="">Description</label>
-        <input type="text" name="description" value="<%= locals.oldData ? oldData.description : null %>">
+        <label for="descriptionInput" class="form-label mt-2">Description</label>
+        <input type="text" class="form-control" name="description" value="<%= locals.oldData ? oldData.description : null %>">
         <% if (locals.errors && errors.description) {%> 
             <div class="text-danger">
               <%= errors.description.msg %> 
             </div>
             <% } %> 
     </div>
-    <button type="submit">Create</button>
+    <div  class="d-grid gap-4 col-1 mx-auto m-3">
+    <button class="btn btn-primary" type="submit">Create</button>
+    </div>
+
+</div>
 </form>

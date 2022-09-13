@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <%- include("./partials/head") %>
-  <%- include("./partials/header") %>
-  <body>
+<%- include("./partials/head") %>
+<%- include("./partials/header") %>
+
+<body>
+
   <% products.forEach(product => {%>
-    <div class="container">
-      <div class="row">
-        <div class="row-cols-3">
+  <div class="container">
+    <div class="row">
+      <article class="card-product">
+        <div class="card" style="width: 18rem;">
+          <% for (let i = 0; i < images.length; i++){%>
+          <img src="<%= images[i].url %>">
+          <% } %>
           <div class="card">
-            <article class="card-product">              
+            <div class="card-body">
               <h1 class="card-title"><%=product.name%></h1>
               <h3 class="card-price"><%=product.price%> USD</h3>
-              <h6 class="card-brand"><%=product.brands.name%></h6>                     
-            </article>
-          </div>
-        </div>
+              <h6 class="card-brand"><%=product.brands.name%></h6>
+      </article>
       </div>
     </div>
- <% }) %> 
- 
-  </body>
-</html>
+  </div>
+  </div>
+  </div>
+  <% }) %>
+</body>
 
+</html>
