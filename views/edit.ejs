@@ -90,9 +90,14 @@
         </div>
         <% } %>
     </div>
-    <div class="d-grid gap-4 col-1 mx-auto m-3">
+    <div class="d-grid gap-4 col-2 mx-auto m-3">
     <button type="submit" class="btn btn-primary">Edit</button>
     </div>
-</form>
+    </form>
+    <form action="/delete/<%=products.id%>" method="POST" class="row">
+    <div class="d-grid gap-4 col-1 mx-auto m-3">
+    <button type="submit" class="btn btn-primary">Delete</button>
+    </div>
+    </form>
 </div>
 </body>

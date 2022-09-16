@@ -60,5 +60,20 @@ a {
   padding-top: 10px;
 }
 
+.carousel-name {
+  color: black;
+}
 
+.carousel-description{
+  color: black;
+}
+
+.slide{
+  margin-top: 1px;
+}
+
+.slide img{
+  height: 80vh;
+  width: 100%;
+}
 

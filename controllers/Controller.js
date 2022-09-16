@@ -18,9 +18,15 @@ const Controller = {
                 association: "materials"
             }, {
                 association: "colors"
+            }, {
+                association: "images"
             }]
         })
-        let giveimages = db.Image.findAll()
+        let giveimages = db.Image.findAll(({
+            include: [{
+                association: "products"
+            }]
+        }))
 
         Promise.all([giveProduct, giveimages])
             .then(function ([products, images]) {
@@ -28,6 +34,7 @@ const Controller = {
                     products: products,
                     images: images
                 })
+                    console.log(products[0].image)
             })
 
     },
@@ -82,6 +89,11 @@ const Controller = {
                 material_id: req.body.material,
                 price: req.body.price,
                 description: req.body.description
+            }).then(product => {
+                db.Image.create({
+                    product_id: product.id,
+                    url: req.body.image
+                })
             })
 
             res.redirect("/")
@@ -151,18 +163,33 @@ const Controller = {
                 where: {
                     id: req.params.id
                 }
+            }).then(product => {
+                db.Image.update({
+                    product_id: product.id,
+                    url: req.body.image
+                },{
+                    where:{
+                        id: req.params.id
+                    } 
+                })
             })
-            db.Image.update({
-                url: req.body.image
-            },{
-                where:{
-                    id: req.params.id
-                }
 
-            })
             res.redirect("/")
         
     }
+},
+delete: function(req,res) {
+    db.Product.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    db.Image.destroy({
+        where:{
+            id: req.params.id
+        }
+    })
+    res.redirect("/")
 }
 }
 module.exports = Controller

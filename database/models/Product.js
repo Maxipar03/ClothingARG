@@ -48,7 +48,11 @@ module.exports = function (sequelize, DataTypes) {
             as: "colors",
             foreignKey: "color_id"
         })
-    
+        
+        Product.hasOne(models.Image,{
+            as: "images",
+            foreignKey: "product_id"
+        })
     }
     return Product
 }
