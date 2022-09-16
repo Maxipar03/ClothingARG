@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import './index.css'
 import reportWebVitals from './reportWebVitals';
+import ProductList from './components/ProductList';
+import BrandProducts from './components/BrandProducts';
+import LastProductCreate from './components/LastProductCreate';
+import Head from './components/Head';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Head />
+    <ProductList />
+    <BrandProducts />
+    <LastProductCreate />
   </React.StrictMode>
 );
 
