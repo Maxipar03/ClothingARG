@@ -1,4 +1,6 @@
 import React,{Component} from "react"
+import Product from "./Product";
+import '../App.css';
 
 class ProductList extends Component{
     constructor(){
@@ -17,15 +19,10 @@ class ProductList extends Component{
     }
     render(){
         return(
-            <div className="row">
-                {this.state.products.map((product, i) =>
-                <div key = {i + product} className="col-lg-6 mb-4">
-                    <div className="card bg-dark text-white shadow">
-                    {product.name}
-                    {product.brands.name}
-                    </div>
-                </div>
-                )
+            <div className="product-list">
+                <h3>Listado productos con categorias</h3>
+                {this.state.products? this.state.products.map((product, i) =>
+                <Product key = {i} {...product} />): <div>loading products...</div>
             }
 
             </div>

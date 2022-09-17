@@ -1,4 +1,5 @@
 import React,{Component} from "react"
+import Brands from "./Brand";
 
 class BrandProducts extends Component{
     constructor(){
@@ -17,16 +18,11 @@ class BrandProducts extends Component{
     }
     render(){
         return(
-            <div className="row">
-                {this.state.brands.map((brand, i) =>
-                <div key = {i + brand} className="col-lg-6 mb-4">
-                    <div className="card bg-dark text-white shadow">
-                   <h4>cantidad de productos de {brand.name}:</h4>
-                    {brand.products.length}
-                    </div>
-                </div>
-                )
-            }
+            <div className="brand-list">
+            <h3 className="title-productList">Listado productos con categorias</h3>
+            {this.state.brands? this.state.brands.map((brand, i) =>
+            <Brands key = {i} {...brand} />): <div>loading Brands...</div>
+        }
 
             </div>
         )
