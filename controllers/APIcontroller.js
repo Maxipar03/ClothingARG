@@ -44,8 +44,29 @@ const APIcontroller = {
                 status: 200
             })
            }) 
-    }
-    
+    },
+    lastProduct: (req, res) => {
+        db.Product.findAll({
+                include: [{
+                    association: "brands"
+                }, {
+                    association: "materials"
+                }, {
+                    association: "colors"
+                }, {
+                    association: "images"
+                }],
+                order: [["id" ,'DESC']],
+                limit: 1
+            })
+            .then(products =>{
+                return res.status(200).json({
+                    total: products.length,
+                    data: products,
+                    status: 200
+                })
+               }) 
+        }
     }
     
 module.exports = APIcontroller

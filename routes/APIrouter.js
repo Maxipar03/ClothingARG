@@ -8,5 +8,6 @@ const Controller = require('../controllers/APIcontroller')
 router.get("/products",Controller.list)
 router.get("/products/:id",Controller.show)
 router.get("/brand",Controller.brandList)
+router.get("/last",Controller.lastProduct)
 
 module.exports = router;
