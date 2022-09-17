@@ -9,7 +9,7 @@ class LastProductCreate extends Component{
         }
     }
     componentDidMount(){
-        fetch("/products")
+        fetch("/last")
         .then(res => res.json())
         .then(data => {
             this.setState({ products: data.data })
@@ -19,7 +19,7 @@ class LastProductCreate extends Component{
     render(){
         return(
             <div className="product-list">
-                <h3>Listado nombres de productos</h3>
+                <h3>Ultimo producto creado</h3>
                 {this.state.products? this.state.products.map((product, i) =>
                 <LastProduct key = {i} {...product} />): <div>loading products...</div>
             }

@@ -19,7 +19,7 @@ class BrandProducts extends Component{
     render(){
         return(
             <div className="brand-list">
-            <h3 className="title-productList">Listado productos con categorias</h3>
+            <h3 className="title-productList">Contador de productos por categoria</h3>
             {this.state.brands? this.state.brands.map((brand, i) =>
             <Brands key = {i} {...brand} />): <div>loading Brands...</div>
         }
