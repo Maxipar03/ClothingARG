@@ -102,7 +102,7 @@ const Controller = {
 
     },
     edit: (req, res) => {
-        let giveProduct = db.Product.findByPk(req.params.id)
+        let giveProduct = db.Product.findByPk(req.params.id,)
         let giveImages = db.Image.findByPk(req.params.id,{
             include: [{
                 association: "products"
