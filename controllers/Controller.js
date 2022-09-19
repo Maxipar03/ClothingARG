@@ -102,7 +102,9 @@ const Controller = {
 
     },
     edit: (req, res) => {
-        let giveProduct = db.Product.findByPk(req.params.id,)
+        let giveProduct = db.Product.findByPk(req.params.id,{ include: [{
+            association: "images"
+        }]})
         let giveImages = db.Image.findByPk(req.params.id,{
             include: [{
                 association: "products"
@@ -129,7 +131,9 @@ const Controller = {
 
         if (resultValidation.errors.length > 0) {
             console.log("🚀 ~ file: Controller.js ~ line 118 ~ resultValidation", resultValidation)
-            let giveProduct = db.Product.findByPk(req.params.id)
+            let giveProduct = db.Product.findByPk(req.params.id,{ include: [{
+                association: "images"
+            }]})
             let giveImages = db.Image.findAll({
                 include: [{
                     association: "products"

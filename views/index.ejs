@@ -52,7 +52,7 @@
                 <% products.forEach(product => {%>
                   <a class="link" href="/edit/<%=product.id%>">
                   <div class="box" style="width: 25rem; margin: 1rem; background: rgb(72, 88, 100); border-radius: 0.4rem; padding: 0.6rem">              
-                    <img src="<%= product && product.images && product.images.url %>" class="card-img-top"  alt="...">
+                    <img src="<%= product && product.images && product.images.url %>" class="card-img-top"  alt="Product Image">
                     <div class="card-body">
                       <h5 class="card-title"><%=product.name%></h5>
                       <h class="card-brand"><%=product.brands.name%></h>

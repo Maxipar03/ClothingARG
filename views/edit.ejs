@@ -7,7 +7,7 @@
 <form action="/edit/<%=products.id%> " method="POST" class="row">
     <div class="col-6">
         <label for="imageInput" class="form-label mt-2">Image</label>
-        <input type="text" name="image" class="form-control" value="<%=images.url%> ">
+        <input type="text" name="image" class="form-control" value="<%= products && products.images && products.images.url %>">
         <% if (locals.errors && errors.image) {%>
             <div class="text-danger">
                 <%= errors.image.msg %>
