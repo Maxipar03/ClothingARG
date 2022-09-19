@@ -1,6 +1,6 @@
 * {
-  margin: 0%;
-  padding: 0%;
+  margin: 0px;
+  padding: 0px;
   border: 0;
   box-sizing: border-box;
 }
@@ -17,7 +17,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color:#B5B1B2 ;
+  background-color:rgb(75, 95, 139)
 }
 
 .search-bar{
@@ -27,6 +27,10 @@ a {
 .logo{
   width: 12vh;
   padding-left: 10px;
+}
+
+.buy{
+    display:none
 }
 
 .selector{
@@ -56,10 +60,6 @@ a {
   color: #00B7FF;
 }
 
-.container{
-  padding-top: 10px;
-}
-
 .carousel-name {
   color: black;
 }
@@ -76,6 +76,61 @@ a {
   height: 80vh;
   width: 100%;
 }
+
+.card-img-top{
+  height: 28vh;
+}
+
+.link{
+  text-decoration:none;
+  color: black;
+}
+
+.link:hover{
+  color: white;
+}
+
+.box:hover{
+  box-shadow: 0px 0px 20px rgb(161, 69, 69);
+}
+
+.box:hover .buy{
+  display: block;
+}
+
+.title{
+  padding-top: 10px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.card-footer{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer{background-color:rgb(75, 95, 139) ;}
+
+footer i {
+  font-size: 5vh;
+  color: rgb(202, 16, 16);
+}
+
+.footer-logo{
+  width: 5vh;
+  position: relative;
+  top: 24px;
+  left: 170px;
+}
+
+.title-form{
+  margin-top: 40px;
+}
+
+
+
+
+
+
 
 /* footer */
 
