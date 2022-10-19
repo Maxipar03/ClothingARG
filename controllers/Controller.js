@@ -4,7 +4,9 @@ const {
 let {
     validationResult
 } = require('express-validator');
-const { production } = require('../database/config/config');
+const {
+    production
+} = require('../database/config/config');
 //const { Association } = require('sequelize/types');
 let db = require("../database/models")
 
@@ -34,7 +36,7 @@ const Controller = {
                     products: products,
                     images: images
                 })
-                    console.log(products[0].image)
+                console.log(products[0].image)
             })
 
     },
@@ -102,10 +104,12 @@ const Controller = {
 
     },
     edit: (req, res) => {
-        let giveProduct = db.Product.findByPk(req.params.id,{ include: [{
-            association: "images"
-        }]})
-        let giveImages = db.Image.findByPk(req.params.id,{
+        let giveProduct = db.Product.findByPk(req.params.id, {
+            include: [{
+                association: "images"
+            }]
+        })
+        let giveImages = db.Image.findByPk(req.params.id, {
             include: [{
                 association: "products"
             }]
@@ -131,9 +135,11 @@ const Controller = {
 
         if (resultValidation.errors.length > 0) {
             console.log("🚀 ~ file: Controller.js ~ line 118 ~ resultValidation", resultValidation)
-            let giveProduct = db.Product.findByPk(req.params.id,{ include: [{
-                association: "images"
-            }]})
+            let giveProduct = db.Product.findByPk(req.params.id, {
+                include: [{
+                    association: "images"
+                }]
+            })
             let giveImages = db.Image.findAll({
                 include: [{
                     association: "products"
@@ -171,29 +177,73 @@ const Controller = {
                 db.Image.update({
                     product_id: product.id,
                     url: req.body.image
-                },{
-                    where:{
+                }, {
+                    where: {
                         id: req.params.id
-                    } 
+                    }
                 })
             })
 
             res.redirect("/")
-        
+
+        }
+    },
+
+    delete: function (req, res) {
+        db.Product.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        db.Image.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        res.redirect("/")
+    },
+
+    detail: function (req, res) {
+        db.Product.findByPk(req.params.id, {
+            include: [{
+                association: "brands"
+            }, {
+                association: "materials"
+            }, {
+                association: "colors"
+            }, {
+                association: "images"
+            }]
+        }).then(function (products) {
+            res.render("detail", {
+                products: products,
+            })
+        })
+    },
+
+    register: function (req, res) {
+        res.render("register")
+    },
+
+    registerProcces: function (req, res) {
+        const resultValidation = validationResult(req)
+
+        if (resultValidation.errors.length > 0) {
+            console.log("🚀 ~ file: Controller.js ~ line 232 ~ resultValidation", resultValidation)
+            res.render("register", {
+                errors: resultValidation.mapped(),
+                oldData: req.body
+            })
+        } else {
+            db.User.create({
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password,
+                confirm_password: req.body.confirm_password
+            })
+        }
     }
-},
-delete: function(req,res) {
-    db.Product.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
-    db.Image.destroy({
-        where:{
-            id: req.params.id
-        }
-    })
-    res.redirect("/")
-}
 }
 module.exports = Controller

@@ -59,14 +59,16 @@ CREATE TABLE IF NOT EXISTS `images` (
   PRIMARY KEY (`id`),
   KEY `FK_images_products` (`product_id`),
   CONSTRAINT `FK_images_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla mydb.images: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla mydb.images: ~6 rows (aproximadamente)
 INSERT INTO `images` (`id`, `url`, `product_id`) VALUES
 	(1, 'https://sneakerbardetroit.com/wp-content/uploads/2022/02/Air-Jordan-1-Brotherhood-555088-706-Release-Date-1.jpeg', 1),
 	(2, 'https://sneakerbardetroit.com/wp-content/uploads/2022/02/Air-Jordan-3-Cardinal-Red-CT8532-126-Release-Date-Price-4.jpeg', 2),
 	(3, 'https://sneakerbardetroit.com/wp-content/uploads/2022/08/Air-Jordan-4-Thunder-2023.jpeg', 3),
-	(4, 'https://sneakerbardetroit.com/wp-content/uploads/2022/09/Nike-Air-Force-1-Low-White-Grey-Blue-FB3360-100-Release-Date-4.jpeg', 4);
+	(4, 'https://sneakerbardetroit.com/wp-content/uploads/2022/08/Air-Jordan-4-Thunder-2023.jpeg', 5),
+	(5, 'https://footwearnews.com/wp-content/uploads/2022/09/JORDAN-MELO-M12-DX1419_300_E_PREM-e1662997604522.jpg', 4),
+	(23, 'https://media.revistagq.com/photos/5e7a22db9da1570008d604c5/master/w_1600%2Cc_limit/aj5front.jpg', 17);
 
 -- Volcando estructura para tabla mydb.material
 CREATE TABLE IF NOT EXISTS `material` (
@@ -82,6 +84,15 @@ INSERT INTO `material` (`id`, `name`) VALUES
 	(3, 'Textile'),
 	(4, 'Canvas'),
 	(5, 'Rubber');
+
+-- Volcando estructura para tabla mydb.permission
+CREATE TABLE IF NOT EXISTS `permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `permission` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla mydb.permission: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla mydb.products
 CREATE TABLE IF NOT EXISTS `products` (
@@ -99,14 +110,30 @@ CREATE TABLE IF NOT EXISTS `products` (
   CONSTRAINT `FK_products_brand` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_products_color` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_products_material` FOREIGN KEY (`material_id`) REFERENCES `material` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla mydb.products: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla mydb.products: ~6 rows (aproximadamente)
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `brand_id`, `material_id`, `color_id`) VALUES
-	(1, 'Jordan 1 High OG “Brotherhood”', 170, 'Dressed in a University Gold, Light Bordeaux, and White color scheme. This Air Jordan 1 features White leather side panels, nylon tongues, and midsole paired with Gold and Purple overlays nodding to the colors of the fraternity. A White midsole atop a Yellow rubber outsole completes the design.', 1, 1, 1),
-	(2, 'Air Jordan 3 “Cardinal Red”', 217, 'Dressed in a White, Light Curry, Cardinal Red, and Cement Grey color scheme. This Air Jordan 3 resembles the Air Jordan 7 “Cardinal” last seen in 2011. The shoe features a White leather upper with signature elephant print overlays highlighted with Cardinal Red accents on the eyelets, liner, and portion of the midsole. Other details includes a Bronze hue on the Jumpman tongue and bottom eyelets.', 1, 1, 1),
+	(1, 'Air Jordan 1 High OG “Brotherhood”', 170, 'The Air Jordan 1 High OG “Brotherhood” pays homage to Michael Jordan’s fraternity, Omega Psi Phi, that he joined during his days at the University of North Carolina.', 1, 1, 1),
+	(2, 'Air Jordan 3 "Cardinal Red”', 217, 'Dressed in a White, Light Curry, Cardinal Red, and Cement Grey color scheme. This Air Jordan 3 resembles the Air Jordan 7 “Cardinal” last seen in 2011. The shoe features a White leather upper with signature elephant print overlays highlighted with Cardinal Red accents on the eyelets, liner, and portion of the midsole. Other details includes a Bronze hue on the Jumpman tongue and bottom eyelets.', 1, 1, 1),
 	(3, 'Air Jordan 4 “Thunder”', 493, 'Dressed in a Black and Tour Yellow color scheme. This offering of the Air Jordan 4 will be arriving in its OG shape featuring a Black nubuck upper paired with Yellow contrasting accents throughout.', 1, 2, 2),
-	(4, 'Nike Air Force 1 Low', 370, 'This offering of the Nike Air Force 1 Low features a White tumbled leather base with Grey nubuck overlays detailed with its double-layered Blue Swooshes', 2, 4, 4);
+	(4, 'Nike Air Force 1 Low', 370, 'This offering of the Nike Air Force 1 Low features a White tumbled leather base with Grey nubuck overlays detailed with its double-layered Blue Swooshes', 2, 4, 4),
+	(5, 'Maxidaa', 1231312, 'pleawdadawdadawdadwadwdawdadawdadaadadadawdadqdadad', 1, 1, 1),
+	(17, 'Air Jordan 5', 1234, 'The Air Jordan 5 was designed by Tinker Hatfield and made its debut in 1990. Inspired by a World War II fighter plane', 1, 1, 3);
+
+-- Volcando estructura para tabla mydb.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `confirm_password` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla mydb.users: ~0 rows (aproximadamente)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

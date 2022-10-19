@@ -1,0 +1,27 @@
+<%- include("./partials/head") %>
+
+<%- include("./partials/header") %>
+
+<div class="container">
+<div class="cont">
+    <div class="product-detail">
+        <img src="<%= products && products.images && products.images.url %>" class="product-image">
+        <div class="product-info">
+            <h2 class="product-name"><%=products.name%></h2>
+            <h3>Marca</h3>            
+            <h7 class="product-brands"><%=products.brands.name%></h7>
+            <h4>Color</h3>
+            <h7 class="product-material"><%=products.materials.name%></h7>
+            <h4>Material</h4>
+            <h7 class="product-color"><%=products.colors.name%></h7>
+            <h3>Descripcion</h3>
+            <p class="product-description"><%=products.description%></p>
+            <div class="btn-detail">
+            <button class="btn btn-primary">Comprar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<%- include("./partials/footer") %>

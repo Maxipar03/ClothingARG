@@ -1,0 +1,68 @@
+<%- include("./partials/head") %>
+
+<%- include("./partials/header") %>
+<section class="d-flex justify-content-center">
+<div class="card col-sm-6 p-3">
+<h1 class="title-form">Registrate</h1>
+<form action="/user/register" method="POST" class="row">
+    <div class="mb-2">
+        <label for="first_nameInput" class="form-label mt-2">Nombre</label>
+        <input type="text" name="first_name" class="form-control" value="<%= locals.oldData ? oldData.first_name : null %>">
+        <% if (locals.errors && errors.first_name) {%> 
+            <div class="text-danger">
+              <%= errors.first_name.msg %> 
+            </div>
+            <% } %> 
+    </div>
+    <div class="mb-2">
+        <label for="last_nameInput" class="form-label mt-2">Apellido</label>
+        <input type="text" name="last_name" class="form-control" value="<%= locals.oldData ? oldData.last_name : null %>">
+        <% if (locals.errors && errors.last_name) {%> 
+            <div class="text-danger">
+              <%= errors.last_name.msg %> 
+            </div>
+            <% } %> 
+    </div>
+    <div class="mb-2">
+        <label for="usernameInput" class="form-label mt-2">Nombre de usuario</label>
+        <input type="text" name="username" class="form-control" value="<%= locals.oldData ? oldData.username : null %>">
+        <% if (locals.errors && errors.username) {%> 
+            <div class="text-danger">
+              <%= errors.username.msg %> 
+            </div>
+            <% } %>  
+    </div>
+    <div class="mb-2">
+        <label for="emailInput" class="form-label mt-2">Email</label>
+        <input type="email" name="email" class="form-control" value="<%= locals.oldData ? oldData.email : null %>">
+        <% if (locals.errors && errors.email) {%> 
+            <div class="text-danger">
+              <%= errors.email.msg %> 
+            </div>
+            <% } %>  
+    </div>
+    <div class="mb-2">
+        <label for="passwordInput" class="form-label mt-2">Contraseña</label>
+        <input type="password" name="password" class="form-control" value="<%= locals.oldData ? oldData.password : null %>">
+        <% if (locals.errors && errors.password) {%> 
+            <div class="text-danger">
+              <%= errors.password.msg %> 
+            </div>
+            <% } %>  
+    </div>
+    <div class="mb-2">
+        <label for="confirm_passwordInput" class="form-label mt-2">Confirma tu contraseña</label>
+        <input type="password" name="confirm_password" class="form-control" value="<%= locals.oldData ? oldData.confirm_password : null %>">
+        <% if (locals.errors && errors.confrim_password) {%> 
+            <div>
+              <%= errors.confirm_password.msg %> 
+            </div>
+            <% } %>   
+    </div>
+    <div  class="d-grid gap-4 col-1 mx-auto m-3">
+    <button class="btn btn-primary" type="submit">Create</button>
+    </div>
+</div>
+</form>
+</section>
+<%- include("./partials/footer") %>
