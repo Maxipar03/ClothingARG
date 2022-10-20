@@ -8,6 +8,7 @@ const {
     production
 } = require('../database/config/config');
 //const { Association } = require('sequelize/types');
+const bcryptjs = require("bcryptjs")
 let db = require("../database/models")
 
 const Controller = {
@@ -240,10 +241,53 @@ const Controller = {
                 last_name: req.body.last_name,
                 username: req.body.username,
                 email: req.body.email,
-                password: req.body.password,
-                confirm_password: req.body.confirm_password
+                password: bcryptjs.hashSync(req.body.password, 10),
+                confirm_password: bcryptjs.hashSync(req.body.confirm_password, 10)
             })
         }
+    },
+
+    login: function(req,res){
+        res.render("login")
+    },
+
+    loginProcces: function(req,res){
+        let email = req.body.email
+        db.User.findOne({
+            where:{
+                email: email
+            }
+        })
+        .then((userToLogin)=>{
+            if(userToLogin){
+                let passwordValidation = bcryptjs.compareSync(req.body.password, userToLogin.password)
+                if(passwordValidation){
+                    req.session.userLogged = userToLogin
+                    if(req.body.rememberUser){
+                        res.cookie("email",req.body.email,{maxAge: (1000 * 120)})
+                    }
+                    return res.redirect("/")
+                }else{
+                    res.render("login",{
+                        errors: {
+                            password:{
+                                msg:"La contraseña ingresada es incorrecta"
+                            }
+                        },
+                        oldData: req.body
+                    })
+                }
+            } else{
+                res.render("login",{
+                    errors:{
+                        email:{
+                            msg:"Este mail no se encuentra registrado"
+                        }
+                    },
+                    oldData: req.body
+                })
+            }
+        })
     }
 }
 module.exports = Controller

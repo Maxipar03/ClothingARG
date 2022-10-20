@@ -25,4 +25,8 @@ router.get("/products/detail/:id",Controller.detail)
 router.get("/user/register",Controller.register)
 router.post("/user/register",ValidationRegister,Controller.registerProcces)
 
+//Pagina de login//
+router.get("/user/login",Controller.login)
+router.post("/user/login",Controller.loginProcces)
+
 module.exports = router;

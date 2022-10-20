@@ -53,8 +53,8 @@
     <div class="mb-2">
         <label for="confirm_passwordInput" class="form-label mt-2">Confirma tu contraseña</label>
         <input type="password" name="confirm_password" class="form-control" value="<%= locals.oldData ? oldData.confirm_password : null %>">
-        <% if (locals.errors && errors.confrim_password) {%> 
-            <div>
+        <% if (locals.errors && errors.confirm_password) {%> 
+            <div class="text-danger">
               <%= errors.confirm_password.msg %> 
             </div>
             <% } %>   
