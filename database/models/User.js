@@ -20,7 +20,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING(50)
         },
         password: {
-            type: DataTypes.STRING(50)
+            type: DataTypes.STRING(100)
         },
         confirm_password: {
             type: DataTypes.STRING(50)

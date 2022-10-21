@@ -2,16 +2,19 @@
     <div class="div-header">
         <a href="/"><img src="/images/ClouthingARG2.png" alt="Logo" class="logo"></a>
         <input type="search" class="search-bar">
+        <% if (locals.isLogged){ %>
         <ul class="selector">
-            <a href="/create">
-                <li>Crear producto</li>
-            </a>
-            <a href="/user/login">
-                <li>Iniciar sesion</li>
-            </a>
-            <a href="/user/register">
-                <li>Crear Cuenta</li>
-            </a>
+            <li>
+                <a href="/create">Crear producto</a>
+            </li>
+            <% } else { %>
+            <li>
+                <a href="/user/login">Iniciar sesion</a>
+            </li>
+            <li>
+                <a href="/user/register">Crear Cuenta</a>
+            </li>
         </ul>
+        <% } %>
     </div>
 </header>

@@ -4,8 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
-const session = require("express-session")
+const session = require("express-session");
 
+const userLoggedMiddleware = require("./middlewares/userLoggedMiddleware");
 const API = require('./routes/APIrouter');
 const index = require('./routes/Router');
 
@@ -26,7 +27,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
 }));
-
+app.use(userLoggedMiddleware);
 
 app.use(API)
 app.use(index)

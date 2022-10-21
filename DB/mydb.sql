@@ -128,12 +128,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `last_name` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `confirm_password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla mydb.users: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla mydb.users: ~7 rows (aproximadamente)
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `password`, `confirm_password`) VALUES
+	(1, 'Maximiliano', 'Pardo', 'Nigh', 'maxipar2003@gmail.com', '', ''),
+	(2, 'Maximiliano', 'Pardo', 'NightFaden', 'maxipar2003@gmail.com', '123456', '123456'),
+	(3, 'Maximiliano', 'Pardo', 'NightFaden', 'maxipar2003@gmail.com', '123456', '123456'),
+	(4, 'Maximiliano', 'Pardo', 'NightFaden', 'maxipar2003@gmail.com', '123456', '123456'),
+	(5, 'Maximiliano', 'Pardo', 'NightFiuden', 'maxipar007@gmail.com', '$2a$10$v0upLXkrzCawTUZOfIEtSemZMq626Jwx.N7owyfUuxa', '$2a$10$JSK0LnvtjYqi1/OUk0GCXu/xPszbztWDA72IqxUq6jj'),
+	(6, 'zaraza', 'zaraza', 'zaraza1234', 'xaxas33788@adroh.com', '$2a$10$OI5dsDxqZ7iORm5zj.y9MeqsfMijLwRevsM07XFJmTR', '$2a$10$g73H2JVVbxGs5sL385fibuNHEaF8lG2tLiEgzrnI1yu'),
+	(7, 'MiliTres', 'Milagros', 'Milidostres', 'Milidostres@gmail.com', '$2a$10$4dwmUbMQWZA9K52a1jkFtO/dOuYt97uBCc2keUdX5SS', '$2a$10$0wmcyWVMgu4oqMQrHi6qnes1EHScPopaeMno6GoMMmm');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -8,7 +8,7 @@ const {
     production
 } = require('../database/config/config');
 //const { Association } = require('sequelize/types');
-const bcryptjs = require("bcryptjs")
+const bcrypt = require("bcryptjs")
 let db = require("../database/models")
 
 const Controller = {
@@ -241,53 +241,70 @@ const Controller = {
                 last_name: req.body.last_name,
                 username: req.body.username,
                 email: req.body.email,
-                password: bcryptjs.hashSync(req.body.password, 10),
-                confirm_password: bcryptjs.hashSync(req.body.confirm_password, 10)
+                password: bcrypt.hashSync(req.body.password, 10),
+                confirm_password: bcrypt.hashSync(req.body.confirm_password, 10)
             })
         }
+        res.redirect("/user/login")
     },
 
-    login: function(req,res){
+    login: function (req, res) {
         res.render("login")
     },
 
-    loginProcces: function(req,res){
+    loginProcces: function (req, res) {
         let email = req.body.email
         db.User.findOne({
-            where:{
-                email: email
-            }
-        })
-        .then((userToLogin)=>{
-            if(userToLogin){
-                let passwordValidation = bcryptjs.compareSync(req.body.password, userToLogin.password)
-                if(passwordValidation){
-                    req.session.userLogged = userToLogin
-                    if(req.body.rememberUser){
-                        res.cookie("email",req.body.email,{maxAge: (1000 * 120)})
+                where: {
+                    email: email
+                }
+            })
+            .then((userToLogin) => {
+                if (userToLogin) {
+                    let passwordValidation = bcrypt.compareSync(req.body.password, userToLogin.password);
+                    console.log("🚀 ~ file: Controller.js ~ line 264 ~ .then ~ passwordValidation", passwordValidation)
+                    if (passwordValidation) {
+                        delete userToLogin.password
+                        delete userToLogin.confirm_password
+                        req.session.userLogged = userToLogin
+                        if (req.body.rememberUser) {
+                            res.cookie("email", req.body.email, {
+                                maxAge: (1000 * 120)
+                            })
+                        }
+                        return res.redirect("/user/profile")
+                    } else {
+                        res.render("login", {
+                            errors: {
+                                password: {
+                                    msg: "La contraseña ingresada es incorrecta"
+                                }
+                            },
+                            oldData: req.body
+                        })
                     }
-                    return res.redirect("/")
-                }else{
-                    res.render("login",{
+                } else {
+                    res.render("login", {
                         errors: {
-                            password:{
-                                msg:"La contraseña ingresada es incorrecta"
+                            email: {
+                                msg: "Este mail no se encuentra registrado"
                             }
                         },
                         oldData: req.body
                     })
                 }
-            } else{
-                res.render("login",{
-                    errors:{
-                        email:{
-                            msg:"Este mail no se encuentra registrado"
-                        }
-                    },
-                    oldData: req.body
-                })
-            }
+            })
+    },
+    
+    profile: function (req, res) {
+        res.render("userProfile", {
+            user: req.session.userLogged
         })
+    },
+
+    logout: function (req,res) {
+        req.session.destroy()
+        res.redirect("/")
     }
 }
 module.exports = Controller
