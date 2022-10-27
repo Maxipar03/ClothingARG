@@ -33,5 +33,12 @@ module.exports = function (sequelize, DataTypes) {
 
     let User = sequelize.define(alias, cols, config)
 
+    User.associate = function(models) {
+        User.hasOne(models.CartProduct, {
+            as: "CartProduct",
+            foreignKey:"user_id"
+        })
+    }
+
     return User
 }

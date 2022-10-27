@@ -17,7 +17,9 @@
             <h3>Descripcion</h3>
             <p class="product-description"><%=products.description%></p>
             <div class="btn-detail">
+            <form action="/product/addCart/<%=products.id%>" method="POST">
             <button class="btn btn-primary">Comprar</button>
+            </form>
             </div>
         </div>
     </div>

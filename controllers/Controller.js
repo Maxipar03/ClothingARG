@@ -305,6 +305,50 @@ const Controller = {
     logout: function (req,res) {
         req.session.destroy()
         res.redirect("/")
+    },
+
+    addCart: function(req,res){
+        let product_id = req.params.id
+        let user_id = req.session.userLogged.id
+
+        db.CartProduct.findOne({
+            where:{
+                product_id: product_id
+            }
+        })
+        .then(resultado =>{
+            if(resultado === null){
+                db.CartProduct.create({
+                    user_id: user_id,
+                    product_id: product_id
+                })
+            }
+        })
+        res.redirect("/")
+    },
+
+    productcart: function(req,res){
+        let user_id = req.session.userLogged.id
+        let total = 0
+
+        let giveProducts = db.CartProduct.findAll({
+            where: {
+                user_id: user_id
+            },
+            include: [{association: "products"}] 
+        })
+        let giveImages = db.Image.findAll({
+            include: [{
+                association: "products"
+            }]
+        })
+    
+        Promise.all([giveProducts,giveImages])
+        .then(function([products,images]){ 
+
+        res.render("cart",{products:products,images:images ,total})
+        })
+        
     }
 }
 module.exports = Controller

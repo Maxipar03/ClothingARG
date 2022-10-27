@@ -3,16 +3,32 @@
         <a href="/"><img src="/images/ClouthingARG2.png" alt="Logo" class="logo"></a>
         <input type="search" class="search-bar">
         <% if (locals.isLogged){ %>
+       <div class="selector-menu">
+        <ul>
+            <li class="name-menu">
+                <i class="fa-solid fa-user"></i><a><%=locals.userLogged.username%></a>
+            </li>
+            <div class="ocultos">
+            <li class="select">
+                <i class="fa-solid fa-plus"></i><a href="/create">Crear Producto</a>
+            </li>
+            <li class="select">
+                <i class="fa-solid fa-cart-shopping"></i> <a href="/user/cart">Mi carrito</a>
+            </li>
+            <li class="select">
+                <i class="fa-solid fa-door-open"></i><a href="/user/logout">Cerrar Sesion</a>
+            </li>
+        </div>
+        </ul>
+        </li>
+       </div>
+            <% } else { %>
         <ul class="selector">
             <li>
-                <a href="/create">Crear producto</a>
-            </li>
-            <% } else { %>
-            <li>
-                <a href="/user/login">Iniciar sesion</a>
+                <i class="fa-solid fa-user"></i> <a href="/user/login">Iniciar sesion</a>
             </li>
             <li>
-                <a href="/user/register">Crear Cuenta</a>
+                <i class="fa-solid fa-user-plus"></i> <a href="/user/register">Crear Cuenta</a>
             </li>
         </ul>
         <% } %>

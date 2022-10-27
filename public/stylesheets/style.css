@@ -13,6 +13,12 @@ html{
   height: 100%;
 }
 
+header{
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
 body{
   display:flex;
   flex-direction: column;
@@ -31,11 +37,13 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color:rgb(75, 95, 139)
+  background-color:rgb(75, 95, 139);
 }
 
 .search-bar{
   display: flex;
+  border-radius: 10px;
+  height: 30px;
 }
 
 .logo{
@@ -166,11 +174,82 @@ footer i {
   margin-top: 3vh;
 }
 
+/* Profile Menu */
 
+.name-menu{
+  list-style: none;
+  margin-right: 30px;
+  font-size: 20px;
+  background-color: white;
+  border-radius: 7px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.ocultos{
+  position: absolute;
+  display: none;
+  list-style: none;
+  z-index: 3;
+  font-size: 20px;
+  background-color: white;
+  width: 188px;
+  text-align: center;
+  border-radius: 7px;
+  padding-bottom: 10px;
+}
 
+.selector-menu:hover .ocultos{
+  display: block;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+}
 
-/* footer */
+.ocultos li a{
+  text-decoration: none;
+  color: black;
+}
 
+.selector-menu{
+  width: 250px;
+  text-align:center ;
+}
 
+.name-menu i{
+  padding-right: 5px;
+}
+
+.ocultos i{
+    padding-right: 5px;
+}
+
+.ocultos li{
+  padding-top: 10px;
+}
+
+/* Register eye */
+.password{
+  display: flex;
+}
+
+.eye{
+  position: absolute;
+  right: 25px;
+  margin-top: 10px;
+  color: gray;
+}
+
+/*Carrito */
+.nombre-precio{
+
+display: flex;
+justify-content: space-between;
+}
+
+.titulo-carrito{
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
 

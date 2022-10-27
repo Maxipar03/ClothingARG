@@ -34,7 +34,11 @@ router.post("/user/login",Controller.loginProcces)
 //Detalle de usuario//
 router.get("/user/profile",authMiddleware,Controller.profile)
 
-//Logout
+//Logout//
 router.get("/user/logout",Controller.logout)
+
+//Carrito//
+router.post("/product/addCart/:id",authMiddleware,Controller.addCart)
+router.get("/user/cart",authMiddleware,Controller.productcart)
 
 module.exports = router;

@@ -35,6 +35,20 @@ INSERT INTO `brand` (`id`, `name`) VALUES
 	(5, 'Reebok'),
 	(6, 'Converse');
 
+-- Volcando estructura para tabla mydb.cartproduct
+CREATE TABLE IF NOT EXISTS `cartproduct` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_products_id` (`product_id`) USING BTREE,
+  KEY `FK_user_id` (`user_id`),
+  CONSTRAINT `FK_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla mydb.cartproduct: ~0 rows (aproximadamente)
+
 -- Volcando estructura para tabla mydb.color
 CREATE TABLE IF NOT EXISTS `color` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -59,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   PRIMARY KEY (`id`),
   KEY `FK_images_products` (`product_id`),
   CONSTRAINT `FK_images_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla mydb.images: ~6 rows (aproximadamente)
 INSERT INTO `images` (`id`, `url`, `product_id`) VALUES
@@ -110,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   CONSTRAINT `FK_products_brand` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_products_color` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_products_material` FOREIGN KEY (`material_id`) REFERENCES `material` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla mydb.products: ~6 rows (aproximadamente)
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `brand_id`, `material_id`, `color_id`) VALUES
@@ -131,9 +145,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(100) NOT NULL,
   `confirm_password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla mydb.users: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla mydb.users: ~9 rows (aproximadamente)
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `password`, `confirm_password`) VALUES
 	(1, 'Maximiliano', 'Pardo', 'Nigh', 'maxipar2003@gmail.com', '', ''),
 	(2, 'Maximiliano', 'Pardo', 'NightFaden', 'maxipar2003@gmail.com', '123456', '123456'),
@@ -141,7 +155,10 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `pass
 	(4, 'Maximiliano', 'Pardo', 'NightFaden', 'maxipar2003@gmail.com', '123456', '123456'),
 	(5, 'Maximiliano', 'Pardo', 'NightFiuden', 'maxipar007@gmail.com', '$2a$10$v0upLXkrzCawTUZOfIEtSemZMq626Jwx.N7owyfUuxa', '$2a$10$JSK0LnvtjYqi1/OUk0GCXu/xPszbztWDA72IqxUq6jj'),
 	(6, 'zaraza', 'zaraza', 'zaraza1234', 'xaxas33788@adroh.com', '$2a$10$OI5dsDxqZ7iORm5zj.y9MeqsfMijLwRevsM07XFJmTR', '$2a$10$g73H2JVVbxGs5sL385fibuNHEaF8lG2tLiEgzrnI1yu'),
-	(7, 'MiliTres', 'Milagros', 'Milidostres', 'Milidostres@gmail.com', '$2a$10$4dwmUbMQWZA9K52a1jkFtO/dOuYt97uBCc2keUdX5SS', '$2a$10$0wmcyWVMgu4oqMQrHi6qnes1EHScPopaeMno6GoMMmm');
+	(7, 'MiliTres', 'Milagros', 'Milidostres', 'Milidostres@gmail.com', '$2a$10$4dwmUbMQWZA9K52a1jkFtO/dOuYt97uBCc2keUdX5SS', '$2a$10$0wmcyWVMgu4oqMQrHi6qnes1EHScPopaeMno6GoMMmm'),
+	(8, 'Maximiliano', 'Pardo', 'Luisarg23adada', 'xaxas33788aa@adroh.com', '$2a$10$jiOfwxNsWY19EhzaukAheeTgMftPWgT2T0AZdGnsb3iCKIK1C0u7W', '$2a$10$ohC6qzObKznSBgzd9yozt.MPVTfmPwL3mQScPhXtaTm'),
+	(9, 'andrea', 'motto', 'andycaracas653', 'armotto04@yahoo.com.ar', '$2a$10$xQylOV1aukJMs2RJ1kvbN.IdeTmRmjqMNVcIRpb.SOHnkaxSysjrC', '$2a$10$KGVSjdCrvSYC3hT.tLcQO.cqTdEUY8cKatV57RJpc5T'),
+	(10, 'Maximiliano', 'Pardo', 'NightFiudenad', 'maxipar003@gmail.com', '$2a$10$nSPllqhDE6pd8ISFxbJjM.izWVyfxX99Fu7PSc9CbukJ5JRR8KJKC', '$2a$10$4/YEhj5E4lF7F2/kbFL4..1X5sSobPYYJ1XB2OgmqPq');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
