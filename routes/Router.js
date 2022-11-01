@@ -14,7 +14,7 @@ router.get("/create",authMiddleware,Controller.create)
 router.post("/create",Validation,Controller.createProcess)
 
 //Editar producto//
-router.get("/edit/:id",Controller.edit)
+router.get("/edit/:id",authMiddleware,Controller.edit)
 router.post("/edit/:id",Validation,Controller.editProcess)
 
 //Eliminar producto//
@@ -40,5 +40,9 @@ router.get("/user/logout",Controller.logout)
 //Carrito//
 router.post("/product/addCart/:id",authMiddleware,Controller.addCart)
 router.get("/user/cart",authMiddleware,Controller.productcart)
+
+//Buscar//
+router.post("/search",Controller.search)
+
 
 module.exports = router;

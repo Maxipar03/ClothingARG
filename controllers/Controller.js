@@ -10,6 +10,7 @@ const {
 //const { Association } = require('sequelize/types');
 const bcrypt = require("bcryptjs")
 let db = require("../database/models")
+const {Op} = require('sequelize')
 
 const Controller = {
 
@@ -342,13 +343,57 @@ const Controller = {
                 association: "products"
             }]
         })
+        let giveProduct = db.Product.findAll({
+            include:[{
+                association: "brands"
+            }, {
+                association: "materials"
+            }, {
+                association: "colors"
+            }, {
+                association: "images"
+            }] 
+        })
     
-        Promise.all([giveProducts,giveImages])
-        .then(function([products,images]){ 
+        Promise.all([giveProducts,giveImages,giveProduct])
+        .then(function([products,images,product]){ 
 
-        res.render("cart",{products:products,images:images ,total})
+        res.render("cart",{products:products,images:images ,product:product})
         })
         
-    }
+    },
+    search: function(req,res){
+        let giveProduct = db.Product.findAll({
+             where:{
+                name: {[Op.like]: "%" + req.body.search + "%"}
+            },
+            include: [{
+                association: "brands"
+            }, {
+                association: "materials"
+            }, {
+                association: "colors"
+            }, {
+                association: "images"
+            }]
+        })
+        let giveImages = db.Image.findAll({
+            include: [{
+                association: "products"
+            }]
+        })
+        Promise.all([giveProduct,giveImages])
+        .then(function([products,images]){
+            if(products == ""){
+                db.Product.findAll()
+                .then(product => {
+                    res.locals.errorsSearch = "No se encontraron resultados para su busqueda"
+                    res.render("search",{products: product})
+                })
+            } else {
+                res.render("search",{products,images})
+            }
+        })
+    },
 }
 module.exports = Controller

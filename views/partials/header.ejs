@@ -1,7 +1,12 @@
 <header>
     <div class="div-header">
         <a href="/"><img src="/images/ClouthingARG2.png" alt="Logo" class="logo"></a>
-        <input type="search" class="search-bar">
+        <div class="search">
+            <form action="/search" method="POST">
+            <input placeholder="Buscar.." type="search" name="search" class="search-bar">
+            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        </form>
         <% if (locals.isLogged){ %>
        <div class="selector-menu">
         <ul>
@@ -22,15 +27,54 @@
         </ul>
         </li>
        </div>
+       <nav class="main-nav">
+        <div class="toggle-menu" id="toggle-menu">
+        <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="selector-mobile" id="main-menu">
+           <li>
+            <a href="/create">Crear Producto</a>
+           </li>
+           <li>
+            <a href="/user/cart">Mi carrito</a>
+           </li>
+           <li>
+            <a href="/user/logout">Cerrar Sesion</a>
+           </li> 
+        </ul>
+        </nav>
             <% } else { %>
         <ul class="selector">
-            <li>
-                <i class="fa-solid fa-user"></i> <a href="/user/login">Iniciar sesion</a>
+            <li class="login">
+                <i class="fa-solid fa-user"></i> <a href="/user/login">Iniciar Sesion</a>
             </li>
-            <li>
+            <li class="register">
                 <i class="fa-solid fa-user-plus"></i> <a href="/user/register">Crear Cuenta</a>
             </li>
         </ul>
+        <nav class="main-nav">
+        <div class="toggle-menu" id="toggle-menu">
+        <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="selector-mobile" id="main-menu">
+           <li>
+            <a href="/user/login">Iniciar Sesion</a>
+           </li>
+           <li>
+            <a href="/user/register">Crear Cuenta</a>
+           </li> 
+        </ul>
+        </nav>
         <% } %>
     </div>
 </header>
+
+<script>
+    const toggleMenuElement = document.getElementById("toggle-menu")
+    const mainMenuElement = document.getElementById("main-menu")
+
+    toggleMenuElement.addEventListener("click", () =>{
+        mainMenuElement.classList.toggle("selector-mobile--show")
+    })
+
+</script>

@@ -1,0 +1,30 @@
+<%- include("./partials/head") %>
+
+<%- include("./partials/header") %>
+
+
+<% if(locals.errorSearch) { %>
+
+<p><%= locals.errorSearch %></p>
+
+<% } %> 
+
+
+    <div class=" container">
+      <h1 class="title">Resultados de tu busqueda:</h1> 
+          <div style="width: 100%; display: flex; flex-wrap: wrap" class="products-index">
+              <% products.forEach(product => {%>
+                <a class="link" href="/products/detail/<%=product.id%>">
+                <div class="box" style="width: 25rem; margin: 1rem; background: rgb(72, 88, 100); border-radius: 0.4rem; padding: 0.6rem">              
+                  <img src="<%= product && product.images && product.images.url %>" class="card-img-top"  alt="Product Image">
+                  <div class="card-body">
+                    <h5 class="card-title"><%=product.name%></h5>
+                    <h class="card-brand"><%=product.brands.name%></h>
+                    <h3><%=product.price%> USD</h3>              
+                  </div>    
+                </a>
+                </div>           
+                </div> 
+    </div>  
+              <% }) %> 
+<%- include("./partials/footer") %>
