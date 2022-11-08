@@ -385,11 +385,26 @@ const Controller = {
         Promise.all([giveProduct,giveImages])
         .then(function([products,images]){
             if(products == ""){
-                db.Product.findAll()
-                .then(product => {
-                    res.locals.errorsSearch = "No se encontraron resultados para su busqueda"
-                    res.render("search",{products: product})
-                })
+                let giveProducts = db.Product.findAll({include: [{
+                    association: "brands"
+                }, {
+                    association: "materials"
+                }, {
+                    association: "colors"
+                }, {
+                    association: "images"
+                }]
+            })
+            let giveImage = db.Image.findAll({
+                include: [{
+                    association: "products"
+                }]
+            })
+            Promise.all([giveProducts,giveImage])
+            .then(function([product,image]){
+                    res.locals.errorSearch = "No se encontraron resultados para su busqueda "
+                    res.render("search",{product,image})
+            })
             } else {
                 res.render("search",{products,images})
             }

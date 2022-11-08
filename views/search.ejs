@@ -2,29 +2,75 @@
 
 <%- include("./partials/header") %>
 
-
+<body>
 <% if(locals.errorSearch) { %>
 
-<p><%= locals.errorSearch %></p>
+<div class="search-error">
+<h1><%= locals.errorSearch %> </h1>
+<img src="/images/pngegg.png">
+</div>
 
-<% } %> 
+<div class=" container">
+<h1 class="title">Algunos otros productos:</h1>
+  <div style="width: 100%; display: flex; flex-wrap: wrap" class="products-index">
+    <a class="link" href="/products/detail/<%=product[1].id%>">
+      <div class="box"
+        style="width: 25rem; margin: 1rem; background: rgb(72, 88, 100); border-radius: 0.4rem; padding: 0.6rem">
+        <img src="<%= product[1] && product[1].images && product[1].images.url %>" class="card-img-top" alt="Product Image">
+        <div class="card-body">
+          <h5 class="card-title"><%=product[1].name%></h5>
+          <h class="card-brand"><%=product[1].brands.name%></h>
+          <h3><%=product[1].price%> USD</h3>
+        </div>
+    </a>
+  </div>
+    <a class="link" href="/products/detail/<%=product[2].id%>">
+      <div class="box"
+        style="width: 25rem; margin: 1rem; background: rgb(72, 88, 100); border-radius: 0.4rem; padding: 0.6rem">
+        <img src="<%= product[2] && product[2].images && product[2].images.url %>" class="card-img-top" alt="Product Image">
+        <div class="card-body">
+          <h5 class="card-title"><%=product[2].name%></h5>
+          <h class="card-brand"><%=product[2].brands.name%></h>
+          <h3><%=product[2].price%> USD</h3>
+        </div>
+    </a>
+  </div>
+    <a class="link" href="/products/detail/<%=product[3].id%>">
+      <div class="box"
+        style="width: 25rem; margin: 1rem; background: rgb(72, 88, 100); border-radius: 0.4rem; padding: 0.6rem">
+        <img src="<%= product[3] && product[3].images && product[3].images.url %>" class="card-img-top" alt="Product Image">
+        <div class="card-body">
+          <h5 class="card-title"><%=product[3].name%></h5>
+          <h class="card-brand"><%=product[3].brands.name%></h>
+          <h3><%=product[3].price%> USD</h3>
+        </div>
+    </a>
+    </div>
+  </div>
+</div>
+</div>
+
+<% } else { %>
 
 
-    <div class=" container">
-      <h1 class="title">Resultados de tu busqueda:</h1> 
-          <div style="width: 100%; display: flex; flex-wrap: wrap" class="products-index">
-              <% products.forEach(product => {%>
-                <a class="link" href="/products/detail/<%=product.id%>">
-                <div class="box" style="width: 25rem; margin: 1rem; background: rgb(72, 88, 100); border-radius: 0.4rem; padding: 0.6rem">              
-                  <img src="<%= product && product.images && product.images.url %>" class="card-img-top"  alt="Product Image">
-                  <div class="card-body">
-                    <h5 class="card-title"><%=product.name%></h5>
-                    <h class="card-brand"><%=product.brands.name%></h>
-                    <h3><%=product.price%> USD</h3>              
-                  </div>    
-                </a>
-                </div>           
-                </div> 
-    </div>  
-              <% }) %> 
+<div class=" container">
+  <h1 class="title">Resultados de tu busqueda:</h1>
+  <div style="width: 100%; display: flex; flex-wrap: wrap" class="products-index">
+    <% products.forEach(product => {%>
+    <a class="link" href="/products/detail/<%=product.id%>">
+      <div class="box"
+        style="width: 25rem; margin: 1rem; background: rgb(72, 88, 100); border-radius: 0.4rem; padding: 0.6rem">
+        <img src="<%= product && product.images && product.images.url %>" class="card-img-top" alt="Product Image">
+        <div class="card-body">
+          <h5 class="card-title"><%=product.name%></h5>
+          <h class="card-brand"><%=product.brands.name%></h>
+          <h3><%=product.price%> USD</h3>
+        </div>
+    </a>
+  </div>
+<% }) %>
+</div>
+</div>
+<% } %>
+</body>
 <%- include("./partials/footer") %>

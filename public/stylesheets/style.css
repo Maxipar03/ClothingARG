@@ -54,7 +54,17 @@ a {
 .search-bar{
   border-radius: 5px;
   height: 30px;
-  width: 50%;
+  width: 20vw;
+}
+
+/* Pagina Search */
+.search-error img{
+  width: 300px;
+}
+
+.search-error{
+ text-align: center;
+ padding: 90px;
 }
 
 .search button{
@@ -96,9 +106,6 @@ a {
   padding: 10px;
 }
 
-.search-bar{
-  width: 33vh;
-}
 
 .card-title{
   font-size: 30px;
@@ -325,6 +332,15 @@ justify-content: space-between;
   display: block;
 }
 
+.search{
+  width: 100%;
+}
+
+.search-bar{
+width: 60%;
+align-items: center;
+}
+
 .selector-mobile--show{
   transform: translateY(0%);
 }
@@ -350,5 +366,9 @@ justify-content: space-between;
 
 .selector-menu{
   display: none;
+}
+
+.logo{
+  margin-right: 3vh;
 }
 }
