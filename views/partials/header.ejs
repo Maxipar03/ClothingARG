@@ -2,14 +2,14 @@
     <div class="div-header">
         <a href="/"><img src="/images/ClouthingARG2.png" alt="Logo" class="logo"></a>
         <div class="search">
-            <form action="/search" method="POST">
+            <form class="formInputSearch" action="/search" method="POST">
             <input placeholder="Buscar.." type="search" name="search" class="search-bar">
             <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
         </div>
-        </form>
         <% if (locals.isLogged){ %>
        <div class="selector-menu">
-        <ul>
+        <ul class="selectUserOptions">
             <li class="name-menu">
                 <i class="fa-solid fa-user"></i><a><%=locals.userLogged.username%></a>
             </li>

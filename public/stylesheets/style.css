@@ -40,9 +40,18 @@ a {
   background-color:rgb(75, 95, 139);
 }
 
+.carrousel{
+  position: relative;
+}
+
 .register{
   background-color: white;
   border-radius: 10px;
+}
+
+.formInputSearch{
+  display: flex;
+  height: max-content;
 }
 
 .login{
@@ -52,9 +61,17 @@ a {
 }
 
 .search-bar{
-  border-radius: 5px;
-  height: 30px;
   width: 20vw;
+  border-radius: 5px 0px 0px 5px;
+  padding-left: 10px;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-bar:focus{
+  outline: none;
 }
 
 /* Pagina Search */
@@ -68,10 +85,7 @@ a {
 }
 
 .search button{
-  position: relative;
-  right: 35px;
-  bottom: 3px;
-  border-radius: 40%;
+ border-radius: 0px 5px 5px 0px;
 }
 
 .logo{
@@ -91,6 +105,11 @@ a {
   display: flex;
   list-style:none;
   padding-right: 10px;
+  margin-bottom: 0px;
+}
+
+.selectUserOptions{
+  margin-bottom: 0px;
 }
 
 .main-nav{
@@ -123,17 +142,30 @@ a {
   color: black;
 }
 
-.slide{
-  margin-top: 1px;
-}
-
 .slide img{
-  height: 80vh;
+  height: 50vh;
   width: 100%;
 }
 
 .card-img-top{
   height: 28vh;
+}
+
+.carousel-indicators button{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  padding: 0;
+  color: #fff;
+  height: 100%;
+  position: absolute;
+  text-align: center;
+  background: 0 0;
 }
 
 .link{
@@ -371,4 +403,25 @@ align-items: center;
 .logo{
   margin-right: 3vh;
 }
+}
+
+
+@media (max-width: 1024px){
+  .product-detail{
+    flex-direction: column;
+  }
+
+  .product-image{
+    width: 100%;
+    height: 370px;
+    object-fit: cover;
+  }
+  
+  .product-detail{
+    padding-bottom: 40px;
+  }
+  
+  .product-info{
+    padding-left: 0px;
+  }
 }

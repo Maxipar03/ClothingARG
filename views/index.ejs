@@ -13,23 +13,27 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-       <a href="/products/1"><img src="/images/Image-jordan.jpg" class="d-block w-100" alt="..."></a>
-        <div class="carousel-caption d-none d-md-block">
+       <a href="/products/detail/1"><img src="/images/Image-jordan.jpg" class="d-block w-100" alt="..."></a>
+        <div style="
+        background-color: #f5f5dcc2;
+        border-radius: 5px;" class="carousel-caption d-none d-md-block">
           <h5 class="carousel-name"><%=products[0].name%></h5>
-          <p class="carousel-description"><%=products[0].description%></p>
+          <p style="margin: 0px;" class="carousel-description"><%=products[0].description%></p>
         </div>
       </div>
       <div class="carousel-item">
-       <a href="/products/3"><img src="/images/Image-jordan2.jpg" class="d-block w-100" alt="..."></a>
-        <div class="carousel-caption d-none d-md-block">
+       <a href="/products/detail/3"><img src="/images/Image-jordan2.jpg" class="d-block w-100" alt="..."></a>
+        <div style="
+        background-color: #f5f5dcc2;
+        border-radius: 5px;" class="carousel-caption d-none d-md-block">
           <h5 class="carousel-name"><%=products[2].name%></h5>
-          <p class="carousel-description"><%=products[2].description%></p>
+          <p style="margin: 0px;" class="carousel-description"><%=products[2].description%></p>
         </div>
       </div>
     </div>
       <div class="carousel-item">
         <a href="products/2"><img src="/images/Image-jordan3.webp" class="d-block w-100" alt="..."></a>
-        <div class="carousel-caption d-none d-md-block">
+        <div  class="carousel-caption d-none d-md-block">
           <h5 class="carousel-name"><%=products[1].name%></h5>
           <p class="carousel-description"><%=products[1].description%></p>
         </div>
@@ -62,9 +66,11 @@
                     </div>    
                   </a>
                   <div class="buy"> 
+                    <% if (locals.isLogged){ %>
                   <form action="/edit/<%=product.id%>" method="GET">
                   <button class="btn btn-primary">Editar</button>
                   </form>
+                  <% } else {} %>
                   </div>           
                   </div>   
                 <% }) %> 
